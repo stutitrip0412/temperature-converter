@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temp-convertor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Temperature Convertor</h1>
+        <label for="fromUnit">From:</label><br>
+        <select id="fromUnit">
+            <option value="C">Celsius</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>  
+        </select><br><br>
+        <label for="toUnit">To:</label><br>
+        <select id="toUnit">
+            <option value="C">Celsius</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>  
+        </select><br><br>
+       <label for="Temperature"> Temperature:</label><br>
+        <input type="number" id="temp" placeholder="Enter any temperature">
+        <br><br>
+        <button onclick="convert()">Convert</button><br><br>
+        <label for="result" >Result:</label><br>
+        <input type="text" id="result" readonly>
+    </div>
+    <script >
+        function convert(){
+var fromUnit=document.getElementById('fromUnit').value;
+var toUnit=document.getElementById('toUnit').value;
+var temp=parseFloat(document.getElementById('temp').value);
+var result;
+var unit;
+switch(fromUnit)
+{
+    case 'C':
+        if(toUnit==='F'){
+            result=(temp*9/5)+32;
+            unit='F';
+        }
+        else if(toUnit==='K'){
+            result=temp+273.15;
+            unit='K';
+        }
+        else{
+            result=temp;
+            unit='C';
+        }
+        break;
+    case 'F':
+        if(toUnit==='C'){
+            result=(temp-32)*5/9;
+            unit='C';
+        }
+        else if(toUnit==='K'){
+            result=((temp-32)*5/9)+273.15;
+            unit='K';
+        }
+        else{
+            result=temp;
+            unit='F';
+        }
+        break;
+     case 'K':
+            if(toUnit==='C'){
+                result=temp-273.15;
+                unit='C';
+            }
+            else if(toUnit==='F'){
+                result=(temp-273.15)*9/5+32;
+                unit='F';
+            }
+            else{
+                result=temp;
+                unit='K';
+            }
+            break;
+}
+document.getElementById('result').value=result+' '+unit;
+}
+    </script>
+    
+</body>
+</html>
